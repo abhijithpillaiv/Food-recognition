@@ -9,4 +9,10 @@
 <p>"food101Work.py" is used for spliting the data into training and testing data, "Food101Model.py" is used for training, "graph.py" is used in plotting the accuracy and loose graph using the history.log data, "predt.py" is used in predicting the item, path of the image is to be provided manually.</p>
 <br/>
 <br/>
-<fotter>For any queries personally mail me at abhijithvpillai26@gmail.com</fotter>
+
+<h3>ScreenShots</h3>
+<img src="screenshot1.png" alt="screenshot">
+<img src="screenshot2.png" alt="screenshot">
+<br/>
+<br/>
+<fotter>For any queries contact abhijithvpillai26@gmail.com</fotter>
