@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { CForm, CButton, CCol, CRow } from '@coreui/react';
+import { Link } from 'react-router-dom';
 
 export default function recipee() {
 
@@ -8,7 +9,7 @@ export default function recipee() {
     const weightgain = ["Homemade protein smoothies",'Peanut Butter on Wholegrain Toas','Chicken','Pasta Salad','Lamb Chops','Cheese Platter','Fruit Smoothie','Spaghetti Bolognese','Barley Soup','Noodle Stir-fry','Yoghurt Parfait']
 
     return (
-        <section id="features" className="features">
+        <section style={{paddingTop:'10px'}} id="features" className="features">
             <div className="container" data-aos="fade-up">
                 <div className="section-title">
                     <h2>Recipe</h2>
@@ -34,14 +35,14 @@ export default function recipee() {
                         <div key={key} className="col-lg-3 col-md-4 mt-4">
                             <div className="icon-box">
                                 {/* <i className="ri-fingerprint-line" style="color: #29cc61;"></i> */}
-                                <h3><a style={{ fontWeight: 'bold', textDecoration: 'none' }} href="">{item}</a></h3>
+                                <h3><Link style={{ fontWeight: 'bold', textDecoration: 'none' }} to={`/blog/${item}`}>{item}</Link></h3>
                             </div>
                         </div>
                     )) : weightgain.map((item, key) => (
                         <div key={key} className="col-lg-3 col-md-4 mt-4">
                             <div className="icon-box">
                                 {/* <i className="ri-fingerprint-line" style="color: #29cc61;"></i> */}
-                                <h3><a style={{ fontWeight: 'bold', textDecoration: 'none' }} href="">{item}</a></h3>
+                                <h3><Link style={{ fontWeight: 'bold', textDecoration: 'none' }} to={`/blog/${item}`}>{item}</Link></h3>
                             </div>
                         </div>))}
                 </div>

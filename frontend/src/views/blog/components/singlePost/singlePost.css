@@ -1,0 +1,136 @@
+/* .singlePost {
+  flex: 9;
+  display: flex;
+} */
+
+.singlePostWrapper {
+  padding: 20px;
+  padding-right: 0;
+  /* display: flex; 
+   flex-direction: column; */
+}
+
+/* .singlePostImg {
+   width: auto;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover; 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+} */
+
+.singlePostTitle {
+  text-align: center;
+  margin: 10px;
+  font-family: "Lora", serif;
+  font-size: 28px;
+}
+
+.singlePostTitleInput {
+  margin: 10px;
+  font-family: "Lora", serif;
+  font-size: 28px;
+  text-align: center;
+  border: none;
+  color: gray;
+  border-bottom: 1px solid lightgray;
+}
+
+.singlePostTitleInput:focus {
+  outline: none;
+}
+
+.singlePostEdit {
+  float: right;
+  font-size: 16px;
+}
+
+.singlePostIcon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.singlePostIcon:first-child {
+  color: teal;
+}
+
+.singlePostIcon:last-child {
+  color: tomato;
+}
+
+.singlePostInfo {
+  padding: auto;
+  margin-bottom: 20px;
+  /* display: flex; */
+  justify-content: space-between;
+  font-size: 20px;
+  font-family: "Varela Round", sans-serif;
+  color: #b39656;
+}
+
+.singlePostDesc {
+  color: #666;
+  font-size: 18px;
+  line-height: 25px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+.singlePostDesc_inc{
+  color: #666;
+  font-size: 18px;
+  line-height: 25px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+.singlePostDesc::first-letter {
+  margin-left: 0px;
+  font-size: 25px;
+  font-weight: 600;
+  /* padding-left: 13px; */
+}
+
+.singlePostDescInput {
+  border: none;
+  color: #666;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.singlePostDescInput:focus {
+  outline: none;
+}
+.singlePostButton {
+  width: 100px;
+  border: none;
+  background-color: teal;
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-top: 20px;
+}
+.imag{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  height: 100%;
+}
+.singlePostHeading{
+  text-align: left;
+  font-family: "Varela Round", sans-serif;
+  font-size: xx-large;
+}
+.singlePostServes{
+  text-align: left;
+  font-family: "Varela Round", sans-serif;
+  font-size: x-large;
+}
+.singlePostHeading::first-letter{
+font-size: xx-large;
+font-weight: 800;
+}

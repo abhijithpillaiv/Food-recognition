@@ -41,7 +41,7 @@ export default function bmicalc() {
                         <CFormInput onChange={(e) => { setweight(e.target.value) }}
                             type='number'
                             id="exampleFormControlInput1"
-                            label="Weight (kg)"
+                            label="Weight"
                         />
                     </CRow>
 

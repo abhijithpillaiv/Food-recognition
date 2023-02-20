@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+import Dashboard from '../views/dashboard/Dashboard';
 const AppHeader = () => {
   const [scroll, setscroll] = useState(null);
   useEffect(() => {
@@ -10,6 +12,8 @@ const AppHeader = () => {
       setscroll(null)
     }
   }, [scroll]);
+  const [user, setuser] = useState(0)
+  const [highlight, sethighlight] = useState('home')
   return (
       <header style={{margin:'10px',marginTop:'0px',fontFamily:'sans-serif',fontSize:'300px'}} id="header" className="fixed-top">
         <div className="container d-flex align-items-center">
@@ -18,17 +22,17 @@ const AppHeader = () => {
 
           <nav className="nav-menu d-none d-lg-block">
             <ul>
-              <li  className="active"><a style={{fontWeight:'bold',textDecoration:'none'}} href="/dashboard">Home</a></li>
-              <li><a onClick={()=>{setscroll(1)}}  style={{fontWeight:'bold',textDecoration:'none',cursor:'pointer'}} >Diet</a></li>
-      
-              <li><a style={{fontWeight:'bold',textDecoration:'none'}} href="/login">Signin</a></li>
-              <li><a style={{fontWeight:'bold',textDecoration:'none'}} href="/login">Login</a></li>
+              <li  className={highlight==='home'?'active':null}><Link style={{fontWeight:'bold',textDecoration:'none'}} to="/dashboard"><span onClick={()=>sethighlight('home')}>Home</span></Link></li>
+              <li className={highlight==='diet'?'active':null}><Link to="/login" style={{fontWeight:'bold',textDecoration:'none',cursor:'pointer'}}><span onClick={()=>sethighlight('diet')}>Diet</span></Link></li>
+              <li className={highlight==='blog'?'active':null}><Link style={{fontWeight:'bold',textDecoration:'none'}} to="/blog/chicken"><span onClick={()=>sethighlight('blog')}>Blog</span></Link></li>
+              <li className={highlight==='about'?'active':null}><Link style={{fontWeight:'bold',textDecoration:'none'}} to="/about"><span onClick={()=>sethighlight('about')}>About us</span></Link></li>
 
+              <li >{user?<Link style={{fontWeight:'bold',textDecoration:'none'}}to="/login">Account</Link>:<Link style={{fontWeight:'bold',textDecoration:'none'}}to="/login">Signin</Link>}</li>
             </ul>
           </nav>
           {/* <!-- .nav-menu --> */}
 
-          <a style={{fontWeight:'bold',textDecoration:'none'}} href="/personalise" className="get-started-btn">Personalise your diet</a>
+          <a style={{fontWeight:'bold',textDecoration:'none'}} href="/personalise" className="get-started-btn">Dashboard</a>
 
         </div>
       </header>

@@ -9,7 +9,7 @@ const AppFooter = () => {
         <span>
         <span >Designed by </span>
         <a href={"https://www.linkedin.com/in/abhijith-v-pillai"} >
-          @avp
+          AbhijithPillaiV
         </a>
         </span >
       </div>

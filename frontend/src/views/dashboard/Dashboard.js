@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Hero from './herosection'
-import About from './about'
+import How from './how'
 import Count from './count'
 import Bmicalc from '../pages/bmicalc'
 import Foodrec from '../pages/foodrec'
 import Recipee from './recipee'
-import Diet from './diet'
-import Customer from './customer'
+import Customer from '../about/customer'
 import CIcon from '@coreui/icons-react'
+import Bot from '../bot/bot'
 import {
-    cilArrowThickToTop
+    cilArrowThickToTop,
+    cilBaby
   } from '@coreui/icons'
 const Dashboard = () => {
   const [scroll, setscroll] = useState(null);
@@ -27,7 +28,7 @@ const Dashboard = () => {
 
       <Hero setscroll={setscroll} />
       <main id="main">
-        <About />
+        <How/>
         <Count />
         {/* <!-- ======= BMI section ======= --> */}
         <section id="why-us" className="why-us">
@@ -46,10 +47,10 @@ const Dashboard = () => {
         </section>
         {/* <!-- End Bmi calculator --> */}
         <Recipee />
-        <Diet />
-        <Customer />
+        {/* <Customer /> */}
       </main>
-      <a href="#" className="back-to-top"><i className="bx bx-up-arrow-alt"><CIcon icon={cilArrowThickToTop}/></i></a>
+      {/* <a  className="back-to-top"><i className="bx bx-up-arrow-alt"><CIcon icon={cilBaby}/></i></a> */}
+      <Bot/>
       <div id="preloadr"></div>
     </div>
   )
