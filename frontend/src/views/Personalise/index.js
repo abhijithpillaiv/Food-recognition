@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import Detils from './detail'
 import BalCalorie from './balCalorie'
 import Eattime from './eattime/eattime'
 import CIcon from '@coreui/icons-react'
 import { CForm, CButton, CCol, CRow } from '@coreui/react';
-
+import { useCookies } from 'react-cookie';
+import axios from 'axios'
+import { port } from '../../context/collection';
+import { cookie } from '../../context/collection'
 import {
   cilArrowThickToTop
 } from '@coreui/icons'
 export default function index() {
+  const [cookies,] = useCookies([cookie]);
+
   const [choice, setchoice] = useState('bal');
   const [amrval, setamrval] = useState(0);
   const [temp, settemp] = useState(0);
@@ -16,6 +20,7 @@ export default function index() {
   const [fat, setfat] = useState(0);
   const [protein, setprotein] = useState(0);
   const [carb, setcarb] = useState(0);
+  const [lodr, setlodr] = useState(null)
   useEffect(() => {
     console.log(carb);
   }, [carb]);
@@ -40,12 +45,25 @@ export default function index() {
     }else{setchoice('bal')}
     console.log(choice);
   }, [choice]);
-  return (
-    <div className='container-fluid' style={{ backgroundColor: "white" }}>
+  // Get details
+  useEffect(() => {
+    if (cookies.data1) {
+        axios.get(port + '/api/getDetails/' + cookies.data1).then((res) => {
+            console.log(res.data);
+            if (res.data) {
+              setamrval(res.data.data.hdetails.amr)
+            } setuser(res.data)
+
+        })
+    }
+    setlodr(true)
+}, [cookies])
+  
+  return lodr&& (
+    <div className='container-fluid' style={{ paddingTop:'110px', backgroundColor: "white" }}>
       <div >
 
         <main id="main">
-          <Detils setamrval={settemp} />
           <div className="container" data-aos="fade-up" style={{ paddingBottom: '20px'}}>
             {choice&&<CForm className="row g-8">
               <CCol xs='auto'>

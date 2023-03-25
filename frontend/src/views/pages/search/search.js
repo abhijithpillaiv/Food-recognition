@@ -1,57 +1,61 @@
-import React from 'react'
-import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+import React, { useState } from "react";
+import "./search.css";
+import SearchIcon from "@material-ui/icons/Search";
+import CloseIcon from "@material-ui/icons/Close";
 
-function search({setrecipe}) {
-    // note: the id field is mandatory
-  const items = [
-    {
-      name: 'pizza'
-    },
-    {
-      name: 'baklava'
-    },
-    {
-      name: 'waffles'
-    },
-    {
-      name: 'chocolate cake'
-    },
-    {
-      name: 'fried rice'
+function SearchBar({ placeholder, data }) {
+  const [filteredData, setFilteredData] = useState([]);
+  const [wordEntered, setWordEntered] = useState("");
+
+  const handleFilter = (event) => {
+    const searchWord = event.target.value;
+    setWordEntered(searchWord);
+    const newFilter = data.filter((value) => {
+      return value.title.toLowerCase().includes(searchWord.toLowerCase());
+    });
+
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
     }
-  ]
+  };
 
-  const handleOnSearch = (string) => {
-    setrecipe(string)
-  }
-  const clearHandler=()=>{
-    setrecipe('chicken')
-  }
-  const formatResult = (item) => {
-    return (
-      <>
-        <span style={{ display: 'block', textAlign: 'left' }}>{item.name}</span>
-      </>
-    )
-  }
+  const clearInput = () => {
+    setFilteredData([]);
+    setWordEntered("");
+  };
 
   return (
-    <div >
-      <div>
-        <div style={{ width: 400 }}>
-          <ReactSearchAutocomplete
-            items={items}
-            showIcon='false'
-            onSearch={handleOnSearch}
-            autoFocus
-            onClear={clearHandler}
-            placeholder='Search for recipies'
-            formatResult={formatResult}
-          />
+    <div className="search">
+      <div className="searchInputs">
+        <input
+          type="text"
+          placeholder={placeholder}
+          value={wordEntered}
+          onChange={handleFilter}
+        />
+        <div className="searchIcon">
+          {filteredData.length === 0 ? (
+            <SearchIcon />
+          ) : (
+            <CloseIcon id="clearBtn" onClick={clearInput} />
+          )}
         </div>
       </div>
+      {filteredData.length != 0 && (
+        <div className="dataResult">
+          {filteredData.slice(0, 15).map((value, key) => {
+            return (
+              <a className="dataItem" href={value.link} target="_blank">
+                <p>{value.title} </p>
+              </a>
+            );
+          })}
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default search
+export default SearchBar;

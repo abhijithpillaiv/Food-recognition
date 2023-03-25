@@ -15,23 +15,17 @@ export default function how() {
             <img src={aboutimg} className="img-fluid" alt="" />
           </div>
           <div className="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-            <h3>Search what you eat and arrange your diet accordingly.</h3>
+            {/* <h3>Search what you eat and arrange your diet accordingly.</h3>
             <p className="font-italic">
               We help you choose what is right for you to eat according to your body.
-            </p>
+            </p> */}
             <ul>
               <li> Get the best diet plan and nutrients in them.</li>
               <li> Update your datas to know what you can eat and how much to eat.</li>
               <li> Get your BMI,Calorie intake and all you need in just a click.</li>
+              <li>Search recipes according to your liking</li>
             </ul>
-            <p>
-              Life without good health is like an army without soldiers and chocolate without cocoa. Health is important to live life to the fullest.
-
-              When a person leads a healthy lifestyle, the body remains healthy and the mind is active and fresh.
-
-              Living a healthy life would extend longevity and also regenerate the body and mind.
-
-              Having good health is of core importance to human happiness.          </p>
+            <p>Signup with a valid email id, update your details on account sections add your food items and track it in the dashboard section.</p>
             <a style={{ textDecoration: 'none' }} href="" className="learn-more-btn">Learn More</a>
           </div>
         </div>

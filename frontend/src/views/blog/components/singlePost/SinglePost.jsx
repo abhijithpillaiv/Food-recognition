@@ -22,7 +22,7 @@ export default function SinglePost() {
 
 
   return res ? (
-    <div className=" singlePost container">
+    <div style={{paddingTop:'20px'}} className=" singlePost container">
       <h1>Recipes and Healthy Tips</h1>
       <div className="singlePostWrapper row">
         <div className="col-sm-12 col-md-12">

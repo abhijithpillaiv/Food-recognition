@@ -7,7 +7,7 @@ const state={
 module.exports.connect=function(done){
     const url ="mongodb://localhost:27017"
 
-    const dbname ='abcchoice1'
+    const dbname ='MapMyFood'
 
     mongoClient.connect(url, {  useNewUrlParser: true, useUnifiedTopology: true }, (err, data)=>{
       if (err) return done(err);

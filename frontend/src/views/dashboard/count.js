@@ -18,7 +18,7 @@ export default function count() {
             <p>Experts</p>
           </div>
           <div className="col-lg-3 col-6 text-center">
-          <CountUp start={0} end={23} delay={0} duration={4}> 
+          <CountUp start={0} end={7000} delay={0} duration={4}> 
               {({ countUpRef }) => (
                 <div>
                   <span ref={countUpRef} />

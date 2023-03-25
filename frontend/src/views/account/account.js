@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import './public/style.css'
+import '../Personalise/public/style.css'
 const fitnessCalculatorFunctions = require("fitness-calculator");
+import { CChart } from '@coreui/react-chartjs'
+import { useCookies } from 'react-cookie';
+import axios from 'axios'
+import { port } from '../../context/collection';
+import { cookie } from '../../context/collection'
 
-export default function details({setamrval}) {
+export default function account() {
     const [name, setname] = useState(null);
+    const [cookies,] = useCookies([cookie]);
     const [gender, setgender] = useState(null);
     const [age, setage] = useState(null);
     const [height, setheight] = useState(null);
@@ -14,47 +20,51 @@ export default function details({setamrval}) {
     const [bmr, setbmr] = useState(null);
     const [amr, setamr] = useState(null);
     const [idealBodyWeight, setidealBodyWeight] = useState(null);
+
+    const [bal, setbal] = useState(0)
+    const [mwl, setmwl] = useState(0)
+    const [mwg, setmwg] = useState(0)
+    const [hwl, sethwl] = useState(0)
+    const [hwg, sethwg] = useState(0)
     var flag = 0;
-
+    const [user, setuser] = useState(false)
+    // Get details
     useEffect(() => {
-        setamrval(Math.trunc(amr))
-    }, [amr]);
-    useEffect(() => {
-        if (bmr) {
+        if (cookies.data1) {
+            axios.get(port + '/api/getDetails/' + cookies.data1).then((res) => {
+                console.log(res.data);
+                if (res.data) {
+                    setage(res.data.age)
+                    setgender(res.data.gender)
+                    setheight(res.data.height)
+                    setweight(res.data.weight)
+                    setactivity(res.data.activity)
+                    setamr(res.data.data.hdetails.amr)
+                    setbal(res.data.data.cneed.bal)
+                    setbmi(res.data.data.hdetails.bmi)
+                    setbmr(res.data.data.hdetails.bmr)
+                    setidealBodyWeight(res.data.data.hdetails.idealBodyWeight)
+                    setmwl(res.data.data.cneed.mwl)
+                    setmwg(res.data.data.cneed.mwg)
+                    sethwl(res.data.data.cneed.hwl)
+                    sethwg(res.data.data.cneed.hwg)
+                } setuser(res.data)
 
-            if (activity == 'sedentary') {
-                setamr(bmr * 1.2)
-            }
-            else if (activity == 'light') {
-                setamr(bmr * 1.375)
-            }
-            else if (activity == 'moderate') {
-                setamr(bmr * 1.55)
-            }
-            else if (activity == 'active') {
-                setamr(bmr * 1.725)
-            }
-            else if (activity == 'extreme') {
-                setamr(bmr * 1.9)
-            }
-            else {
-                setamr(0)
-            }
+            })
+            axios.get(port + '/api/getUser/' + cookies.data1).then((res) => {
+                setname(res.data.name)
+                console.log(res);
+            })
         }
-    }, [bmr,activity]);
+    }, [cookies])
+
+
     const submitHandler = (e) => {
         e.preventDefault()
-        if (gender && age && height && weight && activity) {
-
-            if (gender == 'Male') {
-                setbmr(88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age))
-                setidealBodyWeight(50 + (0.91 * (height - 152.4)))
-            } else {
-                setbmr(447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age))
-                setidealBodyWeight(45.5 + (0.91 * (height - 152.4)))
-            }
-        }
-        setbmi(weight / ((height / 100) * (height / 100)))
+        axios.post(port + '/api/setDetails/', { id: cookies.data1, gender: gender, height: height, weight: weight, activity: activity, age: age, data: null }).then((res) => {
+            console.log(res);
+            window.location.reload(true)            
+        })
     }
     return (
         <div className='container-fluid' style={{ backgroundColor: 'white' }}>
@@ -62,19 +72,19 @@ export default function details({setamrval}) {
                 <div className="card-body">
                     <div className="heading-layout1">
                         <div className="item-title">
-                            <h3>Add Your details</h3>
+                            <h3>{user ? "Details" : "Add Your details"}</h3>
                         </div>
                     </div>
                     <form className="new-added-form">
                         <div className="row">
                             <div className="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Name *</label>
-                                <input required name="name" type="text" onChange={(e) => setname(e.target.value)} className="form-control" />
+                                <input required name="name" value={name} type="text" className="form-control" />
                             </div>
 
                             <div className="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Gender *</label>
-                                <select required name="gender" onChange={(e) => setgender(e.target.value)} className="select2 form-control ">
+                                <select required name="gender" value={gender} onChange={(e) => setgender(e.target.value)} className="select2 form-control ">
                                     <option value="">Please Select Gender *</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -82,19 +92,19 @@ export default function details({setamrval}) {
                             </div>
                             <div className="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Age *</label>
-                                <input required name="age" type="number" onChange={(e) => setage(e.target.value)} placeholder="" className="form-control" />
+                                <input required name="age" value={age} type="number" onChange={(e) => setage(e.target.value)} placeholder="" className="form-control" />
                             </div>
                             <div className="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Height *</label>
-                                <input required name="height" type="number" onChange={(e) => setheight(e.target.value)} placeholder="cm" className="form-control" />
+                                <input required value={height} name="height" type="number" onChange={(e) => setheight(e.target.value)} placeholder="cm" className="form-control" />
                             </div>
                             <div className="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Weight *</label>
-                                <input required name="weight" type="number" onChange={(e) => setweight(e.target.value)} placeholder="kg" className="form-control" />
+                                <input required value={weight} name="weight" type="number" onChange={(e) => setweight(e.target.value)} placeholder="kg" className="form-control" />
                             </div>
                             <div className="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Activity *</label>
-                                <select required name="gender" onChange={(e) => setactivity(e.target.value)} className="select2 form-control ">
+                                <select required value={activity} name="gender" onChange={(e) => setactivity(e.target.value)} className="select2 form-control ">
                                     <option value="">Please Select your activity type *</option>
                                     <option value="sedentary">sedentary</option>
                                     <option value="light">light</option>
@@ -110,8 +120,9 @@ export default function details({setamrval}) {
                             </div>
                         </div>
                     </form>
-                    <div>
-                        {bmi&&bmr&&amr && <table>
+                    <div className='container-fluid'>
+                    {bmi && bmr && amr && <div className='row'>
+                            <span className='col-6'><table>
                             <tbody>
                                 <tr style={{ paddingTop: '5px', fontFamily: 'cursive', fontWeight: 'bold' }}>
                                     <td style={{ textAlign: 'left', fontSize: '25px' }}>Your BMI</td>
@@ -133,18 +144,27 @@ export default function details({setamrval}) {
                                     <td /><td /><td />
                                     <td style={{ fontSize: '20px' }}>: {idealBodyWeight}</td></tr>
 
-                                <tr style={{ paddingTop: '5px', fontFamily: 'cursive', fontWeight: 'bold' }}>
-                                    <td style={{ textAlign: 'left', fontSize: '25px' }}>Your daily calorie needs</td>
-                                    <td /><td /><td />
-                                    <td style={{ fontSize: '20px' }}>: balance:{Math.trunc(amr)}  || mildWeightLoss:{Math.trunc(amr)-200}  || mildWeightGain:{Math.trunc(amr)+200}  || heavyWeightLoss:{Math.trunc(amr)-500}  || heavyWeightGain:{Math.trunc(amr)+500}</td>
-                                </tr>
                             </tbody>
-                        </table>}
+                        </table></span>
+                        <div className='col-6'><CChart
+                                type="bar"
+                                data={{
+                                    labels: ['balance', 'mildWeightLoss', 'mildWeightGain', 'heavyWeightLoss', 'heavyWeightGain'],
+                                    datasets: [
+                                        {
+                                            label: 'Calorie needs',
+                                            backgroundColor: '#f87979',
+                                            data: [bal, mwl, mwg, hwl, hwg],
+                                        },
+                                    ],
+                                }}
+                                labels="Your daily calorie needs"
+                            /></div>
+                        </div>}
                     </div>
                 </div>
 
             </div>
-
         </div>
     )
 }

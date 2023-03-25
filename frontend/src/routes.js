@@ -8,6 +8,7 @@ const logout = React.lazy(() => import('./views/settings/logout'))
 const signup = React.lazy(() => import('./login&Signup/signup/signup'))
 
 const personalise = React.lazy(() => import('./views/Personalise/index'))
+const account = React.lazy(() => import('./views/account/account'))
 
 const blog = React.lazy(() => import('./views/blog/blog'))
 
@@ -32,6 +33,7 @@ const routes = [
 
 
   { path: '/personalise', name: 'Personalise', element: personalise },
+  { path: '/account', name: 'account', element: account },
 
   { path: '/blog/:rec', name: 'blog', element: blog },
 

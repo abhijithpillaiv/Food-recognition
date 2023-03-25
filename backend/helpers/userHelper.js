@@ -5,7 +5,7 @@ var collection = require('../config/collection');
 const { ObjectID } = require('bson');
 const { resolve, reject } = require('promise');
 const { response } = require('express');
-
+var healthHelper=require('./healthHelper')
 module.exports = {
 
 
@@ -24,6 +24,18 @@ module.exports = {
                         resolve(false)
                     }
                 })
+            } else {
+                resolve(false)
+            }
+        })
+    },
+     //getUser
+     geteUser: (userData) => {
+        return new Promise(async (resolve, reject) => {
+            let user = await db.get().collection(collection.user).findOne({'_id':ObjectID(userData) })
+            if (user) {
+                console.log(user);
+               resolve(user)
             } else {
                 resolve(false)
             }
@@ -81,151 +93,44 @@ module.exports = {
             resolve()
         })
     },
-
-    // About
-    getAbout: () => {
-        return new promise(async (resolve, reject) => {
-            let about = await db.get().collection(collection.about).find().toArray()
-            resolve(about)
-        })
-    },
-
-    // Get Items
-    getItems: () => {
-        return new promise(async (resolve, reject) => {
-            let item = await db.get().collection(collection.item).find().toArray()
-            resolve(item)
-        })
-    },
-
-    // Set message
-    setMessage: (data) => {
-        return new promise(async (resolve, reject) => {
-            db.get().collection(collection.message).insertOne(data).then(() => {
-                resolve('Message sent sucessfully')
+    // Intake
+    addIntake:(data)=>{
+        return new promise(async (resolve,reject)=>{
+            await db.get().collection(collection.intake).insertOne(data).then((data)=>{
+                resolve(data)
             })
         })
     },
+    updateIntake:(data)=>{
+        return new promise(async (resolve,reject)=>{
+            await db.get().collection(collection.intake).updateOne({'_id':ObjectID(data.id)},
+            {$set:{"calorie":data.calorie}})
 
-    // Cart
-    addToCart: (proId, userId) => {
-        let proObj = {
-            item: ObjectID(proId),
-            quantity: 1
-        }
-        return new Promise(async (resolve, reject) => {
-            let userCart = await db.get().collection(collection.cart).findOne({ user: ObjectID(userId) })
-
-            if (userCart) {
-                let proExist = userCart.product.findIndex(products => products.item == proId)
-                console.log(proExist);
-
-                if (proExist != -1) {
-                    db.get().collection(collection.cart).updateOne({ user: ObjectID(userId), 'product.item': ObjectID(proId) },
-                        {
-                            $inc: { 'product.$.quantity': 1 }
-                        }).then((response) => {
-                            resolve()
-                        })
-                } else {
-                    db.get().collection(collection.cart).updateOne({ user: ObjectID(userId) },
-                        {
-                            $push: { product: proObj }
-                        }).then((response) => {
-                            resolve()
-                        })
-                }
-
-            } else {
-                let cartObj = {
-                    user: ObjectID(userId),
-                    product: [proObj]
-                }
-                db.get().collection(collection.cart).insertOne(cartObj).then((response) => {
-                    resolve()
-                })
-            }
         })
     },
-    getCartProduct: (userId) => {
-        return new Promise(async (resolve, reject) => {
-            let cartItems = await db.get().collection(collection.cart).aggregate([
-                {
-                    $match: { user: ObjectID(userId) }
-                },
-                {
-                    $unwind: '$product'
-                },
-                {
-                    $project: {
-                        item: '$product.item',
-                        quantity: '$product.quantity'
-
-                    }
-                },
-                {
-                    $lookup: {
-                        from: collection.item,
-                        localField: 'item',
-                        foreignField: '_id',
-                        as: 'products'
-                    }
-                },
-                // {
-                //     $project: {
-                //         item: 1, quantity: 1, products: { $arrayElemAt: ['$products', 0] }
-                //     }
-                // },
-                // {
-                //   $lookup: {
-                //     from: collection.cart, //refer
-                //        let: { proList: '$product.item' },//
-                //        pipeline: [
-                //            {
-                //                $match: {
-                //                    $expr: {
-                //                        $in: ['$_id', "$$proList"]
-                //                    }
-                //                }
-                //            }
-                //        ],
-                //        as: 'cartItems'
-                //    }
-                // }
-            ]).toArray()
-            console.log(cartItems);
-            resolve(cartItems)
-        })
-    },
-    getCartCount: (userId) => {
-        return new Promise(async (resolve, reject) => {
-            let count = 0
-            let cart = await db.get().collection(collection.cart).findOne({ _id: ObjectID(userId) })
-            if (cart) {
-                count = cart.product.length
-            }
-            resolve(count)
-        })
-    },
-    PrdtQuantity: (details) => {
-        return new Promise((resolve, reject) => {
-            db.get().collection(collection.cart).updateOne({ _id: ObjectID(details.cartid), 'product.item': ObjectID(details.prdtid) },
-                {
-                    $set: { 'product.$.quantity': details.count }
-
-                }).then(() => {
-                    resolve(true)
-                })
-        })
-    },
-    deletePrdt: (Cartid, prdtid) => {
-        return new Promise((resolve, reject) => {
-        db.get().collection(collection.cart).updateOne({ _id: ObjectID(Cartid) },
-            {
-                $pull: { product: { item: ObjectID(prdtid) } }
-            }).then(() => {
-                resolve('done')
+    // Account Details
+    getDetails:(id)=>{
+        return new promise(async (resolve,reject)=>{
+            await db.get().collection(collection.profile).findOne({ 'id': id}).then((data)=>{
+                resolve(data)
             })
         })
     },
+    setDetails:(data)=>{
+        return new promise(async (resolve,reject)=>{
+            var details = await healthHelper.getData(data)
+            data.data=details
+            var user=await db.get().collection(collection.profile).findOne({ 'id': data.id})
+                if (user) {
+                    await db.get().collection(collection.profile).deleteOne({ 'id': data.id})
+                    await db.get().collection(collection.profile).insertOne(data).then((data)=>{
+                        resolve(data)
+                    })
+                }else{
+                    await db.get().collection(collection.profile).insertOne(data).then((data)=>{
+                        resolve(data)
+                    }) 
+                }           
+        })
+    }
 }

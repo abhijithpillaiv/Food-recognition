@@ -1,5 +1,4 @@
 var express = require('express');
-const recipeHelper = require('../helpers/recipeHelper');
 var router = express.Router();
 var userHelper = require("../helpers/userHelper")
 const nodemailer = require("nodemailer");
@@ -62,6 +61,13 @@ async function sendmail(port,mailId,token,msg){
     // Login
 router.post('/',((req,res)=>{
     userHelper.login(req.body).then((response)=>{
+    res.send(response)
+      })
+  }))
+
+  // Get user details
+  router.get('/getUser/:id',((req,res)=>{
+    userHelper.geteUser(req.params.id).then((response)=>{
     res.send(response)
       })
   }))
@@ -142,34 +148,7 @@ router.get('/signup/:ipId',(async(req,res)=>{
  }
 }))
 
-// Get all Recipes
 
-router.get('/recipes',((req,res)=>{
-  recipeHelper.getRecipes().then((response)=>{
-    res.send(response)
-  })
-}))
-// Get single Recipee
-
-router.get('/singleRecipe/:id',((req,res)=>{
-  recipeHelper.getSingleRecipes(req.params.id).then((response)=>{
-    res.send(response)
-  })
-}))
-
-// Get About
-router.get('/about',((req,res)=>{
-  userHelper.getAbout().then((response)=>{
-    res.send(response)
-  })
-}))
-
-// Get  Items
-router.get('/items',((req,res)=>{
-  userHelper.getItems().then((response)=>{
-    res.send(response)
-  })
-}))
 
 // Set message
 router.post('/message',((req,res)=>{
@@ -178,28 +157,28 @@ router.post('/message',((req,res)=>{
   })
 }))
 
-// Cart
-router.get('/cart/:id',((req,res)=>{
-  userHelper.getCartProduct(req.params.id).then((resolve)=>{
-    res.send(resolve)
-  })
-}))
-
-router.get('/add-to-cart/:id/:userId',((req,res)=>{
-  userHelper.addToCart(req.params.id,req.params.userId).then((resolve)=>{
-   res.send(resolve)
-  })
-}))
-router.post('/changePrdtQuantity',(req,res)=>{
-  userHelper.PrdtQuantity(req.body).then((response)=>{
+// Intake details
+router.post('/addIntake',((req,res)=>{
+  userHelper.addIntake(req.body).then((res)=>{
     res.send(response)
-})
-})
+  })
+}))
+router.post('/updateIntake',((req,res)=>{
+  userHelper.updateIntake(req.body).then((res)=>{
+    res.send(res)
+  })
+}))
+// User Aaccounts
+router.get('/getDetails/:id',((req,res)=>{
+  userHelper.getDetails(req.params.id).then((ress)=>{
+    console.log(ress);
+    res.send(ress)
+  })
+}))
+router.post('/setDetails',((req,res)=>{
+  userHelper.setDetails(req.body).then((res)=>{
+    res.send(res)
+  })
+}))
 
-
-router.get('/deletePrdt/:cartid/:prdtid',(req,res)=>{
-  userHelper.deletePrdt(req.params.cartid,req.params.prdtid).then((resp)=>{
-    res.send(resp)
-})
-})
 module.exports = router;

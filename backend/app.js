@@ -15,7 +15,6 @@ db.connect((err)=>{
   }
 })
 
-var adminRouter = require('./routes/admin');
 var userRouter = require('./routes/user');
 var app = express();
 
@@ -28,7 +27,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname,'public')));
 //app.use('/image', express.static(path.join(__dirname, 'public')))
 //app.use('/image', express.static(__dirname + 'image'));
-app.use('/api/admin', adminRouter);
 app.use('/api', userRouter);
 
 
