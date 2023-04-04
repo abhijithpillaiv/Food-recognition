@@ -1,17 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Hero from './herosection'
 import How from './how'
 import Count from './count'
-import Bmicalc from '../pages/bmicalc'
-import Foodrec from '../pages/foodrec'
+import Bmicalc from '../../components/bmiCalculator/index'
+import Foodrec from '../../components/foodRec/index'
 import Recipee from './recipee'
-import Customer from '../about/customer'
-import CIcon from '@coreui/icons-react'
-import Bot from '../bot/bot'
-import {
-    cilArrowThickToTop,
-    cilBaby
-  } from '@coreui/icons'
+import Bot from '../../views/bot/bot'
 const Dashboard = () => {
   const [scroll, setscroll] = useState(null);
   useEffect(() => {
@@ -49,7 +43,6 @@ const Dashboard = () => {
         <Recipee />
         {/* <Customer /> */}
       </main>
-      {/* <a  className="back-to-top"><i className="bx bx-up-arrow-alt"><CIcon icon={cilBaby}/></i></a> */}
       <Bot/>
       <div id="preloadr"></div>
     </div>

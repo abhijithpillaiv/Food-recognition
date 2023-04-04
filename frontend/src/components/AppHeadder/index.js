@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import Dashboard from '../views/dashboard/Dashboard';
-import { cookie } from '../context/collection'
+import Dashboard from '../../container/dashboard';
+import { cookie } from '../../context/collection'
 import { useCookies } from 'react-cookie';
 import axios from 'axios'
-import { port } from '../context/collection';
-import Profile from './profile'
-import picon from '../assets/img/icon/profileicon.png'
+import { port } from '../../context/collection';
+import Profile from './profile_dropDown'
+import picon from '../../assets/img/icon/profileicon.png'
 import Dropdown from 'react-bootstrap/Dropdown';
 
 const AppHeader = () => {

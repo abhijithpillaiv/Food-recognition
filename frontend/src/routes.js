@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+const Dashboard = React.lazy(() => import('./container/dashboard'))
 
 
 const Login = React.lazy(() => import('./login&Signup/login/login'))
@@ -10,10 +10,10 @@ const signup = React.lazy(() => import('./login&Signup/signup/signup'))
 const personalise = React.lazy(() => import('./views/Personalise/index'))
 const account = React.lazy(() => import('./views/account/account'))
 
-const blog = React.lazy(() => import('./views/blog/blog'))
+const blog = React.lazy(() => import('./container/blog/blog'))
 
-const about = React.lazy(() => import('./views/about/index'))
-const singlerec = React.lazy(() => import('./views/blog/components/singlePost/SinglePost'))
+const about = React.lazy(() => import('./container/about/index'))
+const singlerec = React.lazy(() => import('./container/blog/components/singlePost/SinglePost'))
 
 const signupSucess = React.lazy(() => import('./forgotPassword/signupSucess/signupSucess'))
 const forgotPassword = React.lazy(() => import('./forgotPassword/forgotPass/forgotPassword'))

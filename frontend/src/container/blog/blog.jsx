@@ -4,8 +4,8 @@ import Posts from "./components/posts/Posts";
 import axios from "axios";
 import './blog.css'
 import { useParams } from 'react-router';
-import Search from '../pages/search/searc.js';
-import DD from '../pages/search/dropdown'
+import Search from '../../components/search/index';
+import DD from '../../components/search/dropdown'
 import Button from 'react-bootstrap/Button';
 
 

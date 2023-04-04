@@ -6,7 +6,7 @@ import axios from 'axios'
 import { useCookies } from 'react-cookie';
 import { cookie } from '../../context/collection'
 import { LoginContext } from '../../context/loginContext'
-import Alert from '../../views/pages/alert';
+import Alert from '../../components/alert/index';
 import { port } from '../../context/collection'
 function login() {
     // Cookie

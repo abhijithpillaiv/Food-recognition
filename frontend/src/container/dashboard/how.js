@@ -15,10 +15,6 @@ export default function how() {
             <img src={aboutimg} className="img-fluid" alt="" />
           </div>
           <div className="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-            {/* <h3>Search what you eat and arrange your diet accordingly.</h3>
-            <p className="font-italic">
-              We help you choose what is right for you to eat according to your body.
-            </p> */}
             <ul>
               <li> Get the best diet plan and nutrients in them.</li>
               <li> Update your datas to know what you can eat and how much to eat.</li>

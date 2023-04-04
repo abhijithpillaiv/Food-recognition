@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import './signupSucess.css'
 import axios from 'axios'
 import { useParams } from 'react-router';
-import Alert from '../../views/pages/alert';
+import Alert from '../../components/alert/index';
 import { port } from '../../context/collection';
 import { useCookies } from 'react-cookie';
 import {cookie} from '../../context/collection'
