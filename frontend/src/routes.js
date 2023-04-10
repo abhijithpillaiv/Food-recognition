@@ -3,20 +3,20 @@ import React from 'react'
 const Dashboard = React.lazy(() => import('./container/dashboard'))
 
 
-const Login = React.lazy(() => import('./login&Signup/login/login'))
-const logout = React.lazy(() => import('./views/settings/logout'))
-const signup = React.lazy(() => import('./login&Signup/signup/signup'))
+const Login = React.lazy(() => import('./container/login&Signup/login/login'))
+const logout = React.lazy(() => import('./container/settings/logout'))
+const signup = React.lazy(() => import('./container/login&Signup/signup/signup'))
 
-const personalise = React.lazy(() => import('./views/Personalise/index'))
-const account = React.lazy(() => import('./views/account/account'))
+const personalise = React.lazy(() => import('./container/Personalise/index'))
+const account = React.lazy(() => import('./container/account/account'))
 
 const blog = React.lazy(() => import('./container/blog/blog'))
 
 const about = React.lazy(() => import('./container/about/index'))
 const singlerec = React.lazy(() => import('./container/blog/components/singlePost/SinglePost'))
 
-const signupSucess = React.lazy(() => import('./forgotPassword/signupSucess/signupSucess'))
-const forgotPassword = React.lazy(() => import('./forgotPassword/forgotPass/forgotPassword'))
+const signupSucess = React.lazy(() => import('./container/forgotPassword/signupSucess/signupSucess'))
+const forgotPassword = React.lazy(() => import('./container/forgotPassword/forgotPass/forgotPassword'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },

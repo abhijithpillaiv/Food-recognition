@@ -4,10 +4,10 @@ import '../fonts/material-icon/css/material-design-iconic-font.min.css'
 import { Link, useNavigate, } from 'react-router-dom'
 import axios from 'axios'
 import { useCookies } from 'react-cookie';
-import { cookie } from '../../context/collection'
-import { LoginContext } from '../../context/loginContext'
-import Alert from '../../components/alert/index';
-import { port } from '../../context/collection'
+import { cookie } from '../../../context/collection'
+import { LoginContext } from '../../../context/loginContext'
+import Alert from '../../../components/alert/index';
+import { port } from '../../../context/collection'
 function login() {
     // Cookie
     const [, setCookie] = useCookies([cookie]);

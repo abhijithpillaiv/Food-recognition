@@ -15,7 +15,7 @@ export default function App() {
   // Containers
    const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
   // Pages
-  const Login = React.lazy(() => import('./login&Signup/login/login'))
+  const Login = React.lazy(() => import('./container/login&Signup/login/login'))
 
   const [cookies, setCookie] = useCookies(['status']);
   const [User, setUser] = useState(null)

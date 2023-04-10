@@ -5,7 +5,7 @@ import Count from './count'
 import Bmicalc from '../../components/bmiCalculator/index'
 import Foodrec from '../../components/foodRec/index'
 import Recipee from './recipee'
-import Bot from '../../views/bot/bot'
+import Bot from '../bot/bot'
 const Dashboard = () => {
   const [scroll, setscroll] = useState(null);
   useEffect(() => {

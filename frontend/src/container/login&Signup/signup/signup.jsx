@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import './signup.css'
 import axios from 'axios'
 import { validEmail} from '../regex';
-import Alert from '../../components/alert/index';
-import { port } from '../../context/collection';
+import Alert from '../../../components/alert/index';
+import { port } from '../../../context/collection';
 function signup() {
 
 

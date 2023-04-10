@@ -26,6 +26,7 @@ def create_foodlist():
               'sushi', 'tacos', 'takoyaki', 'tiramisu', 'tuna_tartare', 'waffles']
     return list_
 
+
 ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)

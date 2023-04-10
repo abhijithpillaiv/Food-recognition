@@ -4,10 +4,10 @@ import './forgotPassword.css'
 import axios from 'axios'
 import {  validPassword } from '../regex';
 import { useParams } from 'react-router';
-import Alert from '../../components/alert/index';
+import Alert from '../../../components/alert/index';
 import { useCookies } from 'react-cookie';
-import {cookie} from '../../context/collection'
-import { port } from '../../context/collection';
+import {cookie} from '../../../context/collection'
+import { port } from '../../../context/collection';
 function forgotPassword() {
     const {token}=useParams()
     const [, setCookie] = useCookies([cookie]);
