@@ -1,0 +1,23 @@
+.cal_showcase{
+    display: flex;
+    width: 100%;
+    text-align: left;
+}
+.cal_showcase_r1{
+    width:50%;
+}
+.cal_showcase_carb,.cal_showcase_cal,.cal_showcase_pro,.cal_showcase_fat{
+    padding: 5px;
+
+}
+.cal_showcase_cal,.cal_showcase_pro{
+    margin-left: 40px;
+}
+.key{
+    font-weight: bold;
+    font-size: 20px;
+}
+.value{
+    padding-left: 15px;
+    font-weight: 500;
+}

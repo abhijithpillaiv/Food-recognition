@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Capsule Width Example</title>
+  <style>
+    .capsule-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .capsule {
+      background-color: #f0f0f0;
+      border-radius: 50px;
+      padding: 20px;
+      white-space: nowrap; /* Prevents text from wrapping */
+      overflow: hidden; /* Hides overflow text */
+      transition: width 0.3s ease; /* Adds a smooth transition effect to width changes */
+    }
+
+    .capsule-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="capsule-container">
+    <div class="container capsule" id="capsule">
+      <div class="row">
+      <input class="col-1" type="radio"/>
+      <p class="col-11 capsule-text" id="capsule-text">Hello, World!asfadsfsafsafsafasfasffasdfsdsd</p>
+    </div>
+  </div></div>
+
+  <script>
+    // Get the capsule div and capsule text element
+    var capsuleDiv = document.getElementById('capsule');
+    var capsuleText = document.getElementById('capsule-text');
+
+    // Update capsule width based on text length
+    function updateCapsuleWidth() {
+      // Get the width of the text element
+      var textWidth = capsuleText.offsetWidth;
+
+      // Set the capsule width to the text width plus some padding
+      capsuleDiv.style.width = (textWidth + 40) + 'px'; // You can adjust the padding value as needed
+    }
+
+    // Call the function initially and whenever the window is resized
+    updateCapsuleWidth();
+    window.addEventListener('resize', updateCapsuleWidth);
+  </script>
+</body>
+</html>

@@ -8,12 +8,13 @@ const logout = React.lazy(() => import('./container/settings/logout'))
 const signup = React.lazy(() => import('./container/login&Signup/signup/signup'))
 
 const personalise = React.lazy(() => import('./container/Personalise/index'))
+const foodDiary = React.lazy(() => import('./container/foodDiary/index'))
+// const foodDiary=import('./container/foodDiary/index')
 const account = React.lazy(() => import('./container/account/account'))
 
 const blog = React.lazy(() => import('./container/blog/blog'))
 
 const about = React.lazy(() => import('./container/about/index'))
-const singlerec = React.lazy(() => import('./container/blog/components/singlePost/SinglePost'))
 
 const signupSucess = React.lazy(() => import('./container/forgotPassword/signupSucess/signupSucess'))
 const forgotPassword = React.lazy(() => import('./container/forgotPassword/forgotPass/forgotPassword'))
@@ -33,12 +34,13 @@ const routes = [
 
 
   { path: '/personalise', name: 'Personalise', element: personalise },
+  { path: '/fooddiary', name: 'fooddiary', element: foodDiary },
+
   { path: '/account', name: 'account', element: account },
 
   { path: '/blog/:rec', name: 'blog', element: blog },
 
   { path: '/about', name: 'about', element: about },
-  { path: '/singlerec/:id', name: 'singlerec', element: singlerec },
 
 
 

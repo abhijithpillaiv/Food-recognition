@@ -1,6 +1,10 @@
-.home{
+.blog-main{
     text-align: center;
     padding-top: 100px;
+	display: flex;
+}
+.blog-content{
+	border-right: 1px solid #000;
 }
 .heading{
     text-align: center;
@@ -11,4 +15,7 @@
 	line-height: 42px;
 	text-transform: uppercase;
 	text-shadow: 0 2px white, 0 3px #777;
+}
+.blog-search-btn{
+	padding-top: 6px;
 }

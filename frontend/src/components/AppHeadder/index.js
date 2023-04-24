@@ -9,8 +9,12 @@ import { port } from '../../context/collection';
 import Profile from './profile_dropDown'
 import picon from '../../assets/img/icon/profileicon.png'
 import Dropdown from 'react-bootstrap/Dropdown';
+import { useLocation } from 'react-router-dom';
 
 const AppHeader = () => {
+  const location = useLocation();
+  const { pathname } = location;
+  const loc = pathname.split("/");
   const [tog, settog] = useState(false)
   const [cookies,] = useCookies([cookie]);
   const [scroll, setscroll] = useState(null);
@@ -32,22 +36,20 @@ const AppHeader = () => {
     })
   }, [cookies])
   const [user, setuser] = useState(0)
-  const [highlight, sethighlight] = useState('home')
   return (
     <div>
-      <header style={{ margin: '10px', marginTop: '0px', fontFamily: 'sans-serif', fontSize: '300px' }} id="header" className="fixed-top">
+      <header style={{ margin: '0px', marginTop: '0px', fontFamily: 'sans-serif', fontSize: '300px' }} id="header" className="fixed-top">
         <div className="container d-flex align-items-center">
 
           <h1 className="logo mr-auto"><a style={{ textDecoration: 'none' }} href="/dashboard"><img style={{paddingBottom:'10px'}} src={logo}/></a></h1>
 
           <nav className="nav-menu d-none d-lg-block">
             <ul>
-              <li className={highlight === 'home' ? 'active' : null}><Link style={{ fontWeight: 'bold', textDecoration: 'none' }} to="/dashboard"><span onClick={() => sethighlight('home')}>Home</span></Link></li>
-              {/* <li className={highlight === 'diet' ? 'active' : null}><Link to="/login" style={{ fontWeight: 'bold', textDecoration: 'none', cursor: 'pointer' }}><span onClick={() => sethighlight('diet')}>Diet</span></Link></li> */}
-              <li className={highlight === 'blog' ? 'active' : null}><Link style={{ fontWeight: 'bold', textDecoration: 'none' }} to="/blog/chicken"><span onClick={() => sethighlight('blog')}>Blog</span></Link></li>
-              <li className={highlight === 'about' ? 'active' : null}><Link style={{ fontWeight: 'bold', textDecoration: 'none' }} to="/about"><span onClick={() => sethighlight('about')}>About us</span></Link></li>
-              <li className={highlight === 'personalise' ? 'active' : null}><Link style={{ fontWeight: 'bold', textDecoration: 'none' }} to="/personalise"><span onClick={() => sethighlight('personalise')}>food diary</span></Link></li>
-              <li className={highlight === 'account' ? 'active' : highlight === 'signin'?'active':null}>{user ? <Link to='/account' style={{ fontWeight: 'bold', textDecoration: 'none' }}><span onClick={() => sethighlight('account')}>Account</span></Link> : <Link style={{ fontWeight: 'bold', textDecoration: 'none' }} to="/login"><span onClick={() => sethighlight('signin')}>Signin</span></Link>}</li>
+              <li className={loc[1] === 'dashboard' ? 'active' : null}><Link style={{ fontWeight: 'bold', textDecoration: 'none' }} to="/dashboard">Home</Link></li>
+              <li className={loc[1] === 'blog' ? 'active' : null}><Link style={{ fontWeight: 'bold', textDecoration: 'none' }} to="/blog/chicken">Recipes</Link></li>
+              <li className={loc[1] === 'about' ? 'active' : null}><Link style={{ fontWeight: 'bold', textDecoration: 'none' }} to="/about">About us</Link></li>
+              <li className={loc[1] === 'fooddiary' ? 'active' : null}><Link style={{ fontWeight: 'bold', textDecoration: 'none' }} to="/fooddiary">food diary</Link></li>
+              <li className={loc[1] === 'login' ? 'active' : loc[1] === 'signup'?'active':null}>{user ? <Link to='/account' style={{ fontWeight: 'bold', textDecoration: 'none' }}>Account</Link> : <Link style={{ fontWeight: 'bold', textDecoration: 'none' }} to="/login">Signin</Link>}</li>
             </ul>
           </nav>
           {/* <!-- .nav-menu --> */}

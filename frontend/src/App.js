@@ -5,6 +5,7 @@ import './assets/css/style.css'
 import { CookiesProvider } from 'react-cookie';
 import { useCookies } from 'react-cookie';
 import {LoginContext} from './context/loginContext'
+import './assets/css/index.css'
 
 export default function App() {
   const loading = (
@@ -23,6 +24,7 @@ export default function App() {
     <BrowserRouter>
       <CookiesProvider>
       <LoginContext.Provider value={{ User: User, setUser: setUser }}>
+    
         <Suspense fallback={loading}>
           <Routes>
               <Route path="*" name="Home" element={<DefaultLayout />} /> 

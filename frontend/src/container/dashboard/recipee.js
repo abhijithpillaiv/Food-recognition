@@ -17,14 +17,14 @@ export default function recipee() {
                 </div>
                 <CForm className="row g-4">
                     <CCol xs='auto'>
-                        <CButton color={tog == 0 ? "primary" : "light"} onClick={() => { settog(0) }} className="mb-12">
+                        <CButton color={tog == 0 ? "success" : "light"} onClick={() => { settog(0) }} className="mb-12">
                             Weight lose
                         </CButton>
 
                     </CCol>
                     <CCol xs='auto'>
 
-                        <CButton color={tog == 1 ? "primary" : "light"} onClick={() => { settog(1) }} className="mb-12">
+                        <CButton color={tog == 1 ? "success" : "light"} onClick={() => { settog(1) }} className="mb-12">
                             Weight gain
                         </CButton>
                     </CCol>

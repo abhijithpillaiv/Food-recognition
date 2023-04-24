@@ -28,10 +28,7 @@ const Dashboard = () => {
         <section id="why-us" className="why-us">
           <div className="container-fluid" data-aos="fade-up">
             <div className="row">
-              <div className="col-lg-4 col-sm-12 d-flex align-items-stretch">
-                <Bmicalc />
-              </div>
-              <div className="col-lg-8 col-sm-12">
+              <div className="col-12 d-flex align-items-stretch">
                 <Foodrec id="foodrec" />
               </div>
 
